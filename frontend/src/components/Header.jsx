@@ -3,10 +3,33 @@ import { Navbar, TextInput, Button } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
   const path = useLocation().pathname;
   const [searchTerm, setSearchTerm] = useState("");
+
+  const SignInButton = (currentUser) => {
+    let myButton;
+
+    myButton = (
+      <Button gradientDuoTone="purpleToBlue" outline>
+        Admin LogIn
+      </Button>
+    );
+
+    // } else if (currentUser == null) {
+    //   let myButton = (
+    //     <Button gradientDuoTone="purpleToBlue" outline>
+    //       Sign In
+    //     </Button>
+    //   );
+    // }
+    return myButton;
+  };
+
   const handleSubmit = (e) => {};
   return (
     <Navbar className="border-b-2">
@@ -35,11 +58,13 @@ export default function Header() {
         <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
           <FaMoon />
         </Button>
-        <Link to="/signin">
-          <Button gradientDuoTone="purpleToBlue" outline>
-            Sign In
-          </Button>
-        </Link>
+        <div>
+          <Link to="/signin">
+            <Button gradientDuoTone="purpleToBlue" outline>
+              Admin Login
+            </Button>
+          </Link>
+        </div>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Navbar.Link active={path === "/"} as={"div"}>
