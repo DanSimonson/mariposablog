@@ -2,14 +2,35 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "flowbite-react";
 import { useSelector, useDispatch } from "react-redux";
+import { signOutSuccess } from "../redux/user/userSlice";
 
 export default function BlogHeader() {
   const path = useLocation().pathname;
   const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const adminRestrictMove = () => {
-    const navigate = useNavigate("/");
+  const handleSignout = async () => {
+    try {
+      const res = await fetch("/backend/user/signout", {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+        navigate("/");
+      } else {
+        dispatch(signOutSuccess());
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
+  // const adminRestrictMove = () => {
+  //   const navigate = useNavigate("/");
+  // };
 
   return (
     <Navbar fluid rounded>
@@ -28,6 +49,13 @@ export default function BlogHeader() {
         </Navbar.Link>
         <Navbar.Link active={path === "/about"} as={"div"}>
           <Link to="/about">About</Link>
+        </Navbar.Link>
+        <Navbar.Link
+          onClick={handleSignout}
+          active={path === "/signout"}
+          as={"div"}
+        >
+          <Link to="/signout">Signout</Link>
         </Navbar.Link>
         {currentUser && currentUser.isAdmin && (
           <Navbar.Link active={path === "/createpost"} as={"div"}>
