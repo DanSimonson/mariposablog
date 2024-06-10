@@ -5,6 +5,7 @@ import "react-quill/dist/quill.snow.css";
 
 export default function CreatePost() {
   const [formData, setFormData] = useState({});
+  const [publishError, setPublishError] = useState(null);
   const toolbarOptions = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
@@ -25,11 +26,36 @@ export default function CreatePost() {
 
     ["clean"], // remove formatting button
   ];
+  
   const module = {
     toolbar: toolbarOptions,
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/backend/post/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      
+      if (!res.ok) {
+        setPublishError(data.message);
+        return;
+      }
+      if (res.ok) {
+        setPublishError(null);
+      }
+    } catch (error) {
+      setPublishError("Something went wrong");
+    }
+  };
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
@@ -66,9 +92,14 @@ export default function CreatePost() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button className="mt-4" type="submit" gradientDuoTone="purpleToPink">
+        <Button
+          onClick={handleSubmit}
+          className="mt-4"
+          gradientDuoTone="purpleToPink"
+        >
           Publish
         </Button>
+        {publishError && <Alert color="failure">{publishError}</Alert>}
       </form>
     </div>
   );

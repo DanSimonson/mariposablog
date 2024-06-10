@@ -28,10 +28,6 @@ export default function BlogHeader() {
     }
   };
 
-  // const adminRestrictMove = () => {
-  //   const navigate = useNavigate("/");
-  // };
-
   return (
     <Navbar fluid rounded>
       <Navbar.Brand>
