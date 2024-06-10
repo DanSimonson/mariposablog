@@ -29,9 +29,11 @@ export default function BlogHeader() {
         <Navbar.Link active={path === "/about"} as={"div"}>
           <Link to="/about">About</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/createpost"} as={"div"}>
-          <Link to="/createpost">Admin Login</Link>
-        </Navbar.Link>
+        {currentUser && currentUser.isAdmin && (
+          <Navbar.Link active={path === "/createpost"} as={"div"}>
+            <Link to="/createpost">Admin Login</Link>
+          </Navbar.Link>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
