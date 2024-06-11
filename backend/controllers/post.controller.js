@@ -25,3 +25,11 @@ export const create = async (req, res, next) => {
     next(error);
   }
 };
+export const getposts = async (req, res, next) => {
+  try {
+    const posts = await Post.find({});
+    res.status(200).json({ posts });
+  } catch (error) {
+    next(error);
+  }
+};

@@ -8,9 +8,12 @@ import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
+
+//middleware
 app.use(express.json());
 app.use(cookieParser());
 
+// start database
 mongoose
   .connect(process.env.MONGO)
   .then(() => {
@@ -24,10 +27,12 @@ app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
 
+//routes
 app.use("/backend/user", userRoutes);
 app.use("/backend/auth", authRoutes);
 app.use("/backend/post", postRoutes);
 
+//error handling
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
