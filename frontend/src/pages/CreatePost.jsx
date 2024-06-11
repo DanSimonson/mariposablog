@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
+import { Alert, Button, Select, TextInput } from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
   const [publishError, setPublishError] = useState(null);
   const toolbarOptions = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -26,7 +28,7 @@ export default function CreatePost() {
 
     ["clean"], // remove formatting button
   ];
-  
+
   const module = {
     toolbar: toolbarOptions,
   };
@@ -43,13 +45,14 @@ export default function CreatePost() {
       });
 
       const data = await res.json();
-      
+
       if (!res.ok) {
         setPublishError(data.message);
         return;
       }
       if (res.ok) {
         setPublishError(null);
+        navigate(`/post/${data.slug}`);
       }
     } catch (error) {
       setPublishError("Something went wrong");
