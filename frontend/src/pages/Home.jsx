@@ -19,8 +19,6 @@ export default function Home() {
       setPosts(data.posts);
       setLoading(false);
     }
-    const data = res.json();
-    console.log("data: ", res);
   };
   return (
     <div className="w-full">
@@ -33,8 +31,8 @@ export default function Home() {
         )}
         {loading && <p className="text-xl text-gray-500">Loading...</p>}
         {!loading &&
-            posts &&
-            posts.map((post) => <PostCard key={post._id} post={post} />)}
+          posts &&
+          posts.map((post) => <PostCard key={post._id} post={post} />)}
       </div>
     </div>
   );
