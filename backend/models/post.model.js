@@ -15,6 +15,11 @@ const postSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    image: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/dmglopmul/image/upload/v1675198744/cld-sample-2.jpg",
+    },
     category: {
       type: String,
       default: "uncategorized",
