@@ -27,7 +27,7 @@ export default function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route element={<AdminPrivateRoute />}>
           <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/updatepost" element={<UpdatePost />} />
+          <Route path="/updatepost/:postId" element={<UpdatePost />} />
           <Route path="/postlist" element={<PostList />} />
         </Route>
         <Route path="/projects" element={<Projects />} />
