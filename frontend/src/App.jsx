@@ -13,7 +13,7 @@ import SignUp from "./pages/SignUp";
 import Projects from "./pages/Projects";
 import Footer from "./components/Footer";
 import BlogHeader from "./components/BlogHeader";
-
+import PostPage from "./pages/PostPage";
 export default function App() {
   return (
     <BrowserRouter>
@@ -31,6 +31,7 @@ export default function App() {
           <Route path="/postlist" element={<PostList />} />
         </Route>
         <Route path="/projects" element={<Projects />} />
+        <Route path="/postpage/:postSlug" element={<PostPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
