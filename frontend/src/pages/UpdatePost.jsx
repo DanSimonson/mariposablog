@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 export default function UpdatePost() {
   const [formData, setFormData] = useState({});
   const [myPosts, setMyPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [post, setPost] = useState(null);
   const { postId } = useParams();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -40,31 +43,35 @@ export default function UpdatePost() {
 
   useEffect(() => {
     try {
-      fetchPosts();
+      fetchPost();
     } catch (error) {
       console.log("error message: ", error.message);
     }
   }, [postId]);
-  //?postId=${postId}
-  const fetchPosts = async () => {
-    const res = await fetch(`/backend/post/getposts`);
 
-    const data = await res.json();
-    if (!res.ok) {
-      console.log(data.message);
-      setPublishError(data.message);
-      return;
-    }
-    if (res.ok) {
-      setPublishError(null);
-      const foundIds = data.posts.map((post) => post._id);
-      const foundId = foundIds.find((id) => id === postId);
-      const foundPostIndex = foundIds.indexOf(foundId);
-      setFormData(data.posts[foundPostIndex]);
-      console.log("formData: ", formData);
+  const fetchPost = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(`/backend/post/getpost/${postId}`);
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+      if (res.ok) {
+        setPost(data);
+        setLoading(false);
+        setError(false);
+        setFormData(data);
+      }
+    } catch (error) {
+      setError(true);
+      setLoading(false);
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 

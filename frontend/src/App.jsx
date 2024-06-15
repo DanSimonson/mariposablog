@@ -6,7 +6,6 @@ import AdminPrivateRoute from "./pages/AdminPrivateRoute";
 import CreatePost from "./pages/CreatePost";
 import PostList from "./pages/PostList";
 import UpdatePost from "./pages/UpdatePost";
-import PostList from "./pages/PostList";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Footer from "./components/Footer";
@@ -24,7 +23,7 @@ export default function App() {
         <Route element={<AdminPrivateRoute />}>
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/updatepost/:postId" element={<UpdatePost />} />
-          <Route path="/postlist" element={<PostList />} /> 
+          <Route path="/postlist" element={<PostList />} />
         </Route>
         <Route path="/postpage/:postSlug" element={<PostPage />} />
       </Routes>

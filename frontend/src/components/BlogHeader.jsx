@@ -52,7 +52,7 @@ export default function BlogHeader() {
         </Navbar.Link>
         {currentUser && currentUser.isAdmin && (
           <Navbar.Link active={path === "/createpost"} as={"div"}>
-            <Link to="/createpost">Admin Login</Link>
+            <Link to="/createpost">Create Post</Link>
           </Navbar.Link>
         )}
         {currentUser && currentUser.isAdmin && (
