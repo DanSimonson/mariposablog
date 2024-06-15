@@ -5,13 +5,9 @@ import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import postRoutes from "./routes/post.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 dotenv.config();
-const app = express();
-
-//middleware
-app.use(express.json());
-app.use(cookieParser());
 
 // start database
 mongoose
@@ -23,6 +19,14 @@ mongoose
     console.log("error: ", err);
   });
 
+const __dirname = path.resolve();
+
+const app = express();
+
+//middleware
+app.use(express.json());
+app.use(cookieParser());
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
@@ -31,6 +35,12 @@ app.listen(3000, () => {
 app.use("/backend/user", userRoutes);
 app.use("/backend/auth", authRoutes);
 app.use("/backend/post", postRoutes);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 //error handling
 app.use((err, req, res, next) => {
