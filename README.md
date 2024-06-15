@@ -6,7 +6,12 @@
 
 ## App Info
 
-This is Dan Simonson's Website displaying his personal blog site. Dedicated to things he has learned along the way. From insights to perplexing problems, blogs cover the intracacies of Full Stack Javascript development with both frontend and backend development subjects covered. 
+This is Dan Simonson's Website displaying his personal blog site.  
+Dedicated to things he has learned along the way. From insights to  
+perplexing problems, blogs cover the intracacies of Full Stack  
+Javascript development with both frontend and backend development  
+subjects covered.  
+
 
 ### Author
 
