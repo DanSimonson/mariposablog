@@ -45,9 +45,9 @@ export default function UpdatePost() {
       console.log("error message: ", error.message);
     }
   }, [postId]);
-
+  //?postId=${postId}
   const fetchPosts = async () => {
-    const res = await fetch(`/backend/post/getposts?postId=${postId}`);
+    const res = await fetch(`/backend/post/getposts`);
 
     const data = await res.json();
     if (!res.ok) {
@@ -61,6 +61,7 @@ export default function UpdatePost() {
       const foundId = foundIds.find((id) => id === postId);
       const foundPostIndex = foundIds.indexOf(foundId);
       setFormData(data.posts[foundPostIndex]);
+      console.log("formData: ", formData);
     }
   };
 
@@ -88,7 +89,7 @@ export default function UpdatePost() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/post/${data.slug}`);
+        navigate(`/updatepost/${data._id}`);
       }
     } catch (error) {
       setPublishError("Something went wrong");

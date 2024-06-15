@@ -43,9 +43,6 @@ export default function BlogHeader() {
         <Navbar.Link active={path === "/signin"} as={"div"}>
           <Link to="/signin">Signin</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link to="/about">About</Link>
-        </Navbar.Link>
         <Navbar.Link
           onClick={handleSignout}
           active={path === "/signout"}
@@ -59,13 +56,8 @@ export default function BlogHeader() {
           </Navbar.Link>
         )}
         {currentUser && currentUser.isAdmin && (
-          <Navbar.Link active={path === "/updatepost"} as={"div"}>
-            <Link to="/updatepost">Update Post</Link>
-          </Navbar.Link>
-        )}
-        {currentUser && currentUser.isAdmin && (
           <Navbar.Link active={path === "/postlist"} as={"div"}>
-            <Link to="/postlist">Post List</Link>
+            <Link to="/postlist">Update Post</Link>
           </Navbar.Link>
         )}
       </Navbar.Collapse>

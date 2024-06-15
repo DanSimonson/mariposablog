@@ -21,7 +21,7 @@ export default function Home() {
     }
   };
   return (
-    <div className="w-full">
+    <div className="w-full min-h-screen">
       <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 ">
         Posts results:
       </h1>
