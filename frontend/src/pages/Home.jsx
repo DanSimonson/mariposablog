@@ -7,6 +7,7 @@ export default function Home() {
   useEffect(() => {
     getPosts();
   }, []);
+  console.log("posts: ", posts);
   const getPosts = async () => {
     setLoading(true);
     const res = await fetch("/backend/post/getposts");
@@ -17,9 +18,11 @@ export default function Home() {
     if (res.ok) {
       const data = await res.json();
       setPosts(data.posts);
+      setPosts((prev) => prev.filter((post) => post.isPrivate !== true))
       setLoading(false);
     }
   };
+
   return (
     <div className="w-full min-h-screen">
       <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 ">
