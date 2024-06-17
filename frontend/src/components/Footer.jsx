@@ -1,6 +1,7 @@
 import { Footer } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { BsFacebook, BsTwitter, BsGithub } from "react-icons/bs";
+import { GiMountaintop } from "react-icons/gi";
 
 export default function FooterComponent() {
   return (
@@ -12,8 +13,9 @@ export default function FooterComponent() {
               to="/"
               className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white"
             >
-              <span className="px-2 py-1 bg-gradient-to-r from-red-500 via-white-500 to bg-blue-500 rounded-xl text-white">
-                Mariposa Blog
+              <span className="self-center whitespace-nowrap px-2 py-1 bg-gradient-to-r from-red-500 via-white-500 to bg-blue-500 rounded-xl text-white font-bold  flex flex-row justify-around p-10">
+                <GiMountaintop className="size-10" />
+                mariposablog
               </span>
             </Link>
           </div>

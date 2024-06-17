@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "flowbite-react";
 import { useSelector, useDispatch } from "react-redux";
 import { signOutSuccess } from "../redux/user/userSlice";
+import { GiMountaintop } from "react-icons/gi";
 
 export default function BlogHeader() {
   const path = useLocation().pathname;
@@ -31,8 +32,9 @@ export default function BlogHeader() {
   return (
     <Navbar fluid rounded>
       <Navbar.Brand>
-        <span className="self-center whitespace-nowrap px-2 py-1 bg-gradient-to-r from-red-500 via-white-500 to bg-blue-500 rounded-xl text-white">
-          Mariposa Blog
+        <span className="self-center whitespace-nowrap px-2 py-1 bg-gradient-to-r from-red-500 via-white-500 to bg-blue-500 rounded-xl text-white font-bold flex flex-row justify-around p-10">
+          <GiMountaintop className="size-10" />
+          mariposablog
         </span>
       </Navbar.Brand>
       <Navbar.Toggle />
