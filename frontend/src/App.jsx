@@ -11,23 +11,26 @@ import SignUp from "./pages/SignUp";
 import Footer from "./components/Footer";
 import BlogHeader from "./components/BlogHeader";
 import PostPage from "./pages/PostPage";
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <BlogHeader />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route element={<AdminPrivateRoute />}>
-          <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/updatepost/:postId" element={<UpdatePost />} />
-          <Route path="/postlist" element={<PostList />} />
-        </Route>
-        <Route path="/postpage/:postSlug" element={<PostPage />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <BlogHeader />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route element={<AdminPrivateRoute />}>
+            <Route path="/createpost" element={<CreatePost />} />
+            <Route path="/updatepost/:postId" element={<UpdatePost />} />
+            <Route path="/postlist" element={<PostList />} />
+          </Route>
+          <Route path="/postpage/:postSlug" element={<PostPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function UpdatePost() {
   const [formData, setFormData] = useState({});
-  const [myPosts, setMyPosts] = useState([]);
+  //const [myPosts, setMyPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
@@ -89,6 +89,7 @@ export default function UpdatePost() {
       const data = await res.json();
 
       if (!res.ok) {
+        console.log('formData: ', formData)
         console.log("data.message: ", data.message);
         setPublishError(data.message);
         return;
