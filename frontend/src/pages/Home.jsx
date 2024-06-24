@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PostCard from "../components/PostCard";
 import { Spinner } from "flowbite-react";
+import { motion } from "framer-motion";
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -54,7 +55,16 @@ export default function Home() {
           {loading && <p className="text-xl text-gray-500">Loading...</p>}
           {!loading &&
             posts &&
-            posts.map((post) => <PostCard key={post._id} post={post} />)}
+            posts.map((post, i) => (
+              <motion.div
+                key={post._id}
+                initial={{ opacity: 0, translateX: i % 2 === 0 ? -50 : 50, translateY: -50 }}
+                animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.4 }}
+              >
+                <PostCard key={post._id} post={post} />{" "}
+              </motion.div>
+            ))}
         </div>
       </div>
     </>

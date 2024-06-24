@@ -11,7 +11,8 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    exclude: ["framer-motion"],
+  },
   plugins: [react()],
 });
-
-
